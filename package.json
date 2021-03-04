@@ -1,0 +1,103 @@
+{
+  "_from": "@dynatrace/cordova-plugin",
+  "_id": "@dynatrace/cordova-plugin@1.213.0",
+  "_inBundle": false,
+  "_integrity": "sha512-k11nIZyi9Dq8b7yvDgn9k+lvV7Ikn25ZDbV2MWWZsUiPf7Ti4SWwu7yHpVISwFxLU5OKyg8/wJCHk03S5sSvhg==",
+  "_location": "/@dynatrace/cordova-plugin",
+  "_phantomChildren": {
+    "@netflix/nerror": "1.1.3",
+    "ansi": "0.3.1",
+    "at-least-node": "1.0.0",
+    "big-integer": "1.6.48",
+    "elementtree": "0.1.7",
+    "endent": "1.4.1",
+    "fast-glob": "3.2.5",
+    "glob": "7.1.6",
+    "graceful-fs": "4.2.6",
+    "isexe": "2.0.0",
+    "plist": "3.0.1",
+    "q": "1.5.1",
+    "read-chunk": "3.2.0",
+    "underscore": "1.12.0"
+  },
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@dynatrace/cordova-plugin",
+    "name": "@dynatrace/cordova-plugin",
+    "escapedName": "@dynatrace%2fcordova-plugin",
+    "scope": "@dynatrace",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@dynatrace/cordova-plugin/-/cordova-plugin-1.213.0.tgz",
+  "_shasum": "44e8408b99f1a6cfe9733387835b4a8ec0dc1025",
+  "_spec": "@dynatrace/cordova-plugin",
+  "_where": "/Users/luisbouca/Documents/Projects/plugins/test",
+  "author": {
+    "name": "Dynatrace"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "dynatrace-cordova-plugin",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "dependencies": {
+    "axios": "0.21.1",
+    "cordova-common": "^4.0.0",
+    "jsdom": "^15.2.1",
+    "plist": "^3.0.1"
+  },
+  "deprecated": false,
+  "description": "This plugin gives you the ability to use the Dynatrace instrumentation in your hybrid application (Cordova, Ionic, ..). It uses the Mobile Agent, the JavaScript Agent. The Mobile Agent will give you all device specific values containing lifecycle information and the Javascript Agent will allow you to manually instrument your JavaScript/TypeScript code out of the box (Typescript definitions included). The JavaScript Agent will cover the network calls and will automatically detect them.",
+  "devDependencies": {
+    "@types/jsdom": "^12.2.4",
+    "@types/plist": "^3.0.2",
+    "babel-polyfill": "^6.23.0",
+    "cordova": "^9.0.0",
+    "fs-extra": "^8.1.0",
+    "ionic": "^5.4.16",
+    "jest": "^25.1.0",
+    "mock-fs": "^4.10.3",
+    "shelljs": "^0.8.3",
+    "tar": "^5.0.5",
+    "typescript": "^3.7.5"
+  },
+  "files": [
+    "assets/*",
+    "files/*",
+    "plugin.xml",
+    "README.md",
+    "other/*",
+    "scripts/*",
+    "typings/main.d.ts",
+    "package.json"
+  ],
+  "homepage": "https://www.dynatrace.com/",
+  "keywords": [
+    "Dynatrace",
+    "Mobile",
+    "Android",
+    "iOS",
+    "Cordova",
+    "Performance",
+    "Monitoring",
+    "Ionic"
+  ],
+  "license": "Copyright (c) 2012-2020 Dynatrace LLC. All rights reserved.",
+  "name": "@dynatrace/cordova-plugin",
+  "scripts": {
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+    "tsc": "tsc"
+  },
+  "typings": "typings/main.d.ts",
+  "version": "1.213.0"
+}

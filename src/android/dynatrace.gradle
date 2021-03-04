@@ -1,0 +1,4 @@
+apply plugin: 'com.dynatrace.instrumentation'
+
+// AUTO - INSERTED
+// AUTO - INSERTED

@@ -14,6 +14,18 @@ module.exports = {
 		error = error || emptyFunction;
 
 		exec(success, error, "DynatraceCordovaPlugin", "startVisit", [appId,beaconUrl]);
+	},
+	identifyUser: function (userId,success, error) {
+		success = success || emptyFunction;
+		error = error || emptyFunction;
+
+		exec(success, error, "DynatraceCordovaPlugin", "startVisit", [userId]);
+	},
+	reportError: function (code,message,success, error) {
+		success = success || emptyFunction;
+		error = error || emptyFunction;
+
+		exec(success, error, "DynatraceCordovaPlugin", "startVisit", [code,message]);
 	}
 
 

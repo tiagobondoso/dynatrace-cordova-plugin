@@ -17,7 +17,7 @@ module.exports = {
                 defaultConfig {
                     autoStart {
                         applicationId 'Insert your ApplicationID from Config'
-                        beaconUrl 'Insert your BeaconURL from Config'
+                        beaconUrl 'https://bf14292qza.bf.dynatrace.com/mbeacon'
                     }
                 }
             }

@@ -38,7 +38,6 @@
   "_resolved": "https://registry.npmjs.org/@dynatrace/cordova-plugin/-/cordova-plugin-1.213.0.tgz",
   "_shasum": "44e8408b99f1a6cfe9733387835b4a8ec0dc1025",
   "_spec": "@dynatrace/cordova-plugin",
-  "_where": "/Users/luisbouca/Documents/Projects/plugins/test",
   "author": {
     "name": "Dynatrace"
   },

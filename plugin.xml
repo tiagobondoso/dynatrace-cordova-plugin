@@ -32,6 +32,7 @@
     <framework src="libsqlite3.dylib"/>
     <framework src="CoreLocation.framework"/>
     <framework src="CoreTelephony.framework"/>
+    <framework src="CoreServices.framework"/>
     <framework src="Security.framework"/>
     <framework src="SystemConfiguration.framework"/>
     <framework src="libz.dylib"/>

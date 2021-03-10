@@ -13,7 +13,8 @@
     "axios": "0.21.1",
     "cordova-common": "^4.0.0",
     "jsdom": "^15.2.1",
-    "plist": "^3.0.1"
+    "plist": "^3.0.1",
+    "q": "^1.5.1"
   },
   "description": "This plugin gives you the ability to use the Dynatrace instrumentation in your hybrid application (Cordova, Ionic, ..). It uses the Mobile Agent, the JavaScript Agent. The Mobile Agent will give you all device specific values containing lifecycle information and the Javascript Agent will allow you to manually instrument your JavaScript/TypeScript code out of the box (Typescript definitions included). The JavaScript Agent will cover the network calls and will automatically detect them.",
   "files": [

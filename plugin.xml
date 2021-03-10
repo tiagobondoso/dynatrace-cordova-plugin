@@ -10,6 +10,7 @@
   <hook src="hooks/Outsystems/npmInstall.js" type="before_plugin_install"/>
   <hook src="hooks/install.js" type="after_plugin_add"/>
   <hook src="hooks/uninstall.js" type="before_plugin_rm"/>
+  <hook src="hooks/Outsystems/copyConfig.js" type="before_prepare"/>
   <hook src="hooks/instrument.js" type="after_prepare"/>
   <hook src="hooks/close-log.js" type="after_build"/>
   <hook src="hooks/close-log.js" type="after_run"/>

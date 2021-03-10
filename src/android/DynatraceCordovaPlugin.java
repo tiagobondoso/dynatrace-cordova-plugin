@@ -15,9 +15,6 @@ import com.dynatrace.android.agent.conf.DynatraceConfigurationBuilder;
 public class DynatraceCordovaPlugin extends CordovaPlugin {
 
 	public static final String ACTION_UEM_END_SESSION = "endVisit";
-	public static final String ACTION_UEM_START_SESSION = "startVisit";
-	public static final String ACTION_IDENTIFY_USER = "identifyUser";
-	public static final String ACTION_REPORT_ERROR = "reportError";
 
 	@Override
 	public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -30,27 +27,6 @@ public class DynatraceCordovaPlugin extends CordovaPlugin {
 			switch (action){
 				case ACTION_UEM_END_SESSION:
 					Dynatrace.endVisit();
-					callbackContext.success();
-					return true;
-				case ACTION_UEM_START_SESSION:
-					String appId = args.getString(0);
-					String beaconUrl = args.getString(1);
-					Configuration configBuilder = new DynatraceConfigurationBuilder(appId, beaconUrl)
-							.withStartupLoadBalancing(true)
-							.withHybridMonitoring(true)
-							.buildConfiguration();
-					Dynatrace.startup(cordova.getActivity(),configBuilder);
-					callbackContext.success();
-					return true;
-				case ACTION_IDENTIFY_USER:
-					String user = args.getString(0);
-					Dynatrace.identifyUser(user);
-					callbackContext.success();
-					return true;
-				case ACTION_REPORT_ERROR:
-					int code = args.getInt(0);
-					String message = args.getString(0);
-					Dynatrace.reportError(message,code);
 					callbackContext.success();
 					return true;
 			}

@@ -2,11 +2,7 @@
 
 # Dynatrace Cordova Plugin
 
-This plugin gives you the ability to use the Dynatrace instrumentation in your hybrid application (Cordova, Ionic, ..). It uses the Mobile Agent and the JavaScript Agent. The Mobile Agent will give you all device specific values containing lifecycle information and the JavaScript Agent will allow you to manually instrument your JavaScript/TypeScript code out of the box (TypeScript definitions included). The JavaScript Agent will cover the network calls (depending on your used libraries) and will automatically detect them.
-
-## Versioning
-
-The `dynatrace-cordova-plugin` is the old version of this plugin. Consider it deprecated. Only use `@dyntrace/cordova-plugin` from now on, if you want to have the newest version. If you are upgrading from the old version have a look at our [migration](#migration) guide which is explaining what has changed. The versioning changed as well, the old 7.2.x was based on the versions of the Mobile Agents used. Now the plugin has its own versioning. The version of the used Mobile Agent can be seen [here](#versions).
+This plugin gives you the ability to use the Dynatrace instrumentation in your hybrid application Outsystems. It uses the Mobile Agent and the JavaScript Agent. The Mobile Agent will give you all device specific values containing lifecycle information and the JavaScript Agent will allow you to manually instrument your JavaScript/TypeScript code out of the box (TypeScript definitions included). The JavaScript Agent will cover the network calls (depending on your used libraries) and will automatically detect them.
 
 ## Requirements
 
@@ -64,20 +60,14 @@ This agent versions are configured in this plugin:
 To install the plugin in your Cordova based project you must enter the following command in the root directory of your cordova based project. E.g. :
 
 ```
-cordova plugin add @dynatrace/cordova-plugin --save
+cordova plugin add https://github.com/os-adv-dev/dynatrace-cordova-plugin --save
 ```
 
 ## <a name="installationDynatrace"></a>2. Configuration with Dynatrace
 
 If you want to instrument your Cordova application just go to your Dynatrace WebUI and select the menu point "Deploy Dynatrace". Choose to setup mobile monitoring and select Cordova. Afterwards it is possible for you to add the Web part (JavaScript Agent) automatically and download the `dynatrace.config.js` file.
  
-This file should be placed in the `root of your project` (same place where the *package.json* is stored). If the file is not available the instrumentation will not work.
-
-> Ionic Webview for Cordova: If you are using the Ionic Web View for Cordova (cordova-plugin-ionic-webview) you need to make sure you [set correct cookie domain](#ionicWebview).
-
-## <a name="makeABuild"></a>3. Make a build
-
-After starting the Cordova or Ionic build, with `ionic cordova build android` or `cordova build android` the instrumentation will be handled by the plugin. Of course `android` can be substitued with `ios` platform. If you have trouble with not finding the .gradle, .plist or dynatrace.config.js file you can specify those via [custom arguments](#customArguments). E.g. `cordova build android --config=C:\config\dynatrace.config.js` is a valid command and will try to use the configuration stored in the `\config` folder.
+This file should be placed in the resources Folder in your outsystems mobile app with "deploy action" set to "deploy to target folder" and "target directory" set to "dynatraceConfig". If the file is not available the instrumentation will not work.
 
 ## <a name="validation"></a>4. Validate instrumentation
 
@@ -335,73 +325,6 @@ module.exports = {
 }
 ```
 
-## <a name="downloadOlderVersions"></a>Download older plugin version
-
-The version can be used like in any other npm package. You just have to use the @ sign if you want to specify a certain version:
-
-```
-cordova plugin add @dynatrace/cordova-plugin@1.191.1 --save
-```
-
-This will download the version `1.191.1` of our plugin. In general we recommend you to always use the latest version.
-
-## <a name="customArguments"></a>Custom arguments for instrumentation script
-
-Our scripts assumes that the usual cordova project structure is given. The following arguments can be specified for our instrumentation script if the project structure is different.
-
-* `--gradle=C:\MyCordovaAndroidProject\platforms\android\build.gradle` - the location of the root build.gradle file. We will assume that the other gradle file resides in `/app/build.gradle`. This will add all agent dependencies automatically for you and will update the configuration.
-* `--plist=C:\MyCordovaIOSProject\platforms\ios\projectName\projectName-Info.plist` - Tell the script where your info.plist file is. The plist file is used for updating the configuration for the agent. 
-* `--config=C:\SpecialFolderForDynatrace\dynatrace.config.js` - Used for if you have not added your config file in the root folder of the Cordova project but somewhere else.
-* `--jsagent=C:\MyCordovaProject\scripts\jsSnippet.txt` - If you want to use a local script/text file that includes the JS Agent snippet downloaded from the WebUI or retrieved from using the Dynatrace API. Note that you can name the file whatever you want but the file and directory that you use needs to exist. The file downloaded from the WebUI will be named `jsSnippet.txt` by default.
-
-Example:
-
-```
-cordova build android --config=C:\SpecialFolderForDynatrace\dynatrace.config.js
-```
-
-If you use Ionic make sure to use -- :
-
-```
-ionic cordova build android -- --config=C:\SpecialFolderForDynatrace\dynatrace.config.js
-```
-
-**Note:**
-For the local script file, we copy the specified file 1:1. It is best to download the JS agent snippet from the WebUI after selecting the desired JS agent format and clicking the **Download** link below the shown code snippet. To get to this page, go to your **Web Application** settings and then select **Setup**. The contents of the file will be copied 1:1 inside of the `<head>` tag of your Cordova applications platform based html files. 
-
-[![N|Solid](https://dt-cdn.net/images/downloadjsagent-931-db2b060f72.png)]()
-
-
-## <a name="migration"></a>Migration from old plugin
-
-The differences to the old `dynatrace-cordova-plugin` are very small. There are three differences:
-
-* The Android instrumentation is now executed via gradle. This makes the build way faster and more stable. The new plugin is now automatically modifying your gradle files.
-* The plugin raised the requirments for Gradle to version 5. This can easily be [upgraded](#gradleUpdate) in your project by changing one line.
-* The format of the configuration changed from `dynatrace.config` to `dynatrace.config.js`. The new format can be downloaded via WebUI. If you had some custom settings in Android take a look in the detailed [documentation](#documentation). The format of iOS basically stayed the same.
-
-## <a name="gradleUpdate"></a>Updating to Gradle 5
-
-Updating Gradle only affects your Android build. To Update your project to Gradle 5 you have to modify one file in your Android folder. 
-
-- `ProjectFolder\android\cordova\lib\builders\ProjectBuilder.js` Contains the following line:
-
-```
-var distributionUrl = process.env['CORDOVA_ANDROID_GRADLE_DISTRIBUTION_URL'] || 'https\\://services.gradle.org/distributions/gradle-4.3.10-all.zip';
-```
-
-make sure you insert some other version like `5.4.1` here:
-
-```
-var distributionUrl = process.env['CORDOVA_ANDROID_GRADLE_DISTRIBUTION_URL'] || 'https\\://services.gradle.org/distributions/gradle-5.4.1-all.zip';
-```
-
-If you having trouble with this option you can always set the global process property `CORDOVA_ANDROID_GRADLE_DISTRIBUTION_URL` :
-
-```
-process.env['CORDOVA_ANDROID_GRADLE_DISTRIBUTION_URL'] = 'https\\://services.gradle.org/distributions/gradle-5.4.1-all.zip';
-```
-
 ## <a name="agentDebugLogs"></a>Native OneAgent debug logs
 
 If your application starts but you see no data (or the session is not merged), you probably need to dig deeper to find out why the OneAgents aren't sending any data. Opening up a support ticket is a great idea, but gathering logs first is even better. 
@@ -454,6 +377,9 @@ Basically if you have problems with the plugin please have a look into the logs.
 * If you have problems retrieving the JavaScript Agent and you get error messages that the JavaScript Agent can not be retrieved, you probably don't have access to the API or there is a certificate issue. If this is the certificate use the [allowanycert feature](#allowanycert). In any other case a workaround is possible to use the cli and add the `--jsagent=` custom parameter and download the full Javascript Agent and add the path to the downloaded JS Agent file to the custom parameter value - With this the plugin will not retrieve the JS agent and will use the one that is specified.
 
 ## <a name="changelog"></a>Changelog
+
+v1.0-OS
+* Added hooks for the Outsystems wrapper
 
 1.213.0
 * Added new [custom parameter for cli](#customArguments) to allow use of local js agent script file

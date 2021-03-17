@@ -25,9 +25,7 @@
     <header-file src="src/ios/DynatraceCordovaPlugin.h"/>
     <source-file src="src/ios/DynatraceCordovaPlugin.m"/>
 
-    <!--header-file src="src/ios/lib/Dynatrace.h"/>
-    <source-file framework="true" src="src/ios/lib/libDynatrace.a"/-->
-    <framework src="Dynatrace/lib" spec="~> 8.181" type="podspec"/>
+    <framework src="Dynatrace/lib" spec="~> 8.181.1" type="podspec"/>
 
     <framework src="libsqlite3.dylib"/>
     <framework src="CoreLocation.framework"/>

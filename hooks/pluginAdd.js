@@ -14,7 +14,7 @@ module.exports = function (context) {
         if (context !== undefined && context.opts !== undefined && context.opts.plugins !== undefined) {
             let plugins = context.opts.plugins;
             for (let i = 0; i < plugins.length; i++) {
-                if (plugins[i].endsWith("@dynatrace/cordova-plugin")) {
+                if (plugins[i].endsWith("dynatrace-cordova-plugin")) {
                     delete plugins[i];
                     return;
                 }

@@ -21,9 +21,7 @@ module.exports = function (context) {
     return __awaiter(this, void 0, void 0, function* () {
         if (context !== undefined && context.opts !== undefined && context.opts.plugins !== undefined) {
             let plugins = context.opts.plugins;
-            if (plugins.includes("@dynatrace/cordova-plugin")) {
-                let index = plugins.indexOf("@dynatrace/cordova-plugin");
-                plugins[index] = "dynatrace-cordova-plugin";
+            if (plugins.includes("dynatrace-cordova-plugin")) {
                 modifyConfigXml();
                 yield modifyPackageJson();
                 yield removeGradleModification();
@@ -42,14 +40,13 @@ function modifyPackageJson() {
                 delete packageJsonParsed.scripts.instrumentDynatrace;
             }
             if (packageJsonParsed.cordova !== undefined && packageJsonParsed.cordova.plugins !== undefined) {
-                delete packageJsonParsed.cordova.plugins["@dynatrace/cordova-plugin"];
                 delete packageJsonParsed.cordova.plugins["dynatrace-cordova-plugin"];
             }
             if (packageJsonParsed.dependencies !== undefined) {
-                delete packageJsonParsed.dependencies["@dynatrace/cordova-plugin"];
+                delete packageJsonParsed.dependencies["dynatrace-cordova-plugin"];
             }
             if (packageJsonParsed.devDependencies !== undefined) {
-                delete packageJsonParsed.devDependencies["@dynatrace/cordova-plugin"];
+                delete packageJsonParsed.devDependencies["dynatrace-cordova-plugin"];
             }
             yield fileOp.writeTextToFile(pathToPackageJson, JSON.stringify(packageJsonParsed));
         }
@@ -92,7 +89,7 @@ function removePListModification() {
 function modifyConfigXml() {
     try {
         let cfg = new ConfigParser(nodePath.join(pathConst.getApplicationPath(), "config.xml"));
-        cfg.removePlugin("@dynatrace/cordova-plugin");
+        cfg.removePlugin("dynatrace-cordova-plugin");
         cfg.write();
     }
     catch (e) {

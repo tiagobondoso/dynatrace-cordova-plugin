@@ -18,8 +18,6 @@ const nodePath = require("path");
 module.exports = function () {
     return __awaiter(this, void 0, void 0, function* () {
         yield installDependencies();
-        yield modifyPackageJson();
-        modifyConfigXml();
         yield config.checkConfiguration();
     });
 };
@@ -34,40 +32,4 @@ function installDependencies() {
             execSync('npm install', { cwd: pathConstants.getPluginPath() });
         }
     });
-}
-function modifyPackageJson() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            let pathToPackageJson = pathConstants.getApplicationPackage();
-            let packageJson = yield fileOperation.readTextFromFile(pathToPackageJson);
-            let packageJsonParsed = JSON.parse(packageJson);
-            if (packageJsonParsed.cordova !== undefined && packageJsonParsed.cordova.plugins !== undefined) {
-                packageJsonParsed.cordova.plugins["@dynatrace/cordova-plugin"] = {};
-                delete packageJsonParsed.cordova.plugins["dynatrace-cordova-plugin"];
-            }
-            yield fileOperation.writeTextToFile(pathToPackageJson, JSON.stringify(packageJsonParsed, null, "\t"));
-        }
-        catch (e) {
-            logger_1.default.logMessageSync("Could not find package.json!", logger_1.default.WARNING);
-        }
-    });
-}
-function modifyConfigXml() {
-    try {
-        const { ConfigParser } = require('cordova-common');
-        let cfg = new ConfigParser(nodePath.join(pathConstants.getApplicationPath(), "config.xml"));
-        let plugin = cfg.getPlugin("dynatrace-cordova-plugin");
-        if (plugin === undefined) {
-            return;
-        }
-        let pluginWithAt = cfg.getPlugin("@dynatrace/cordova-plugin");
-        if (pluginWithAt === undefined) {
-            cfg.addPlugin({ name: "@dynatrace/cordova-plugin", spec: plugin.spec });
-        }
-        cfg.removePlugin("dynatrace-cordova-plugin");
-        cfg.write();
-    }
-    catch (e) {
-        logger_1.default.logMessageSync("Config.xml is not available - Can not modify Dynatrace dependency", logger_1.default.WARNING);
-    }
 }

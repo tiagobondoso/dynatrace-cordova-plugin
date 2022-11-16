@@ -15,7 +15,7 @@ This agent versions are configured in this plugin:
 * Android Agent: 8.211.1.1010
 
 ## MABS Version
-This plugin uses MABS version 7.
+This plugin uses MABS version 8.
 
 ## How to Update this Wrapper
 

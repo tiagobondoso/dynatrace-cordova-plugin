@@ -5,17 +5,17 @@ It gives you the ability to use the Dynatrace instrumentation in your hybrid app
 
 ## Dynatrace Cordova plugin version
 
-This is based on @dynatrace/cordova-plugin version 1.219.1.
+This is based on @dynatrace/cordova-plugin version 1.259.2.
 
 ## Agent Versions
 
 This agent versions are configured in this plugin:
 
-* iOS Agent: 8.219.1.1004
-* Android Agent: 8.211.1.1010
+* iOS Agent: 8.259.1.1009
+* Android Agent: 8.259.1.1008
 
 ## MABS Version
-This plugin uses MABS version 8.
+This plugin uses MABS version 9.
 
 ## How to Update this Wrapper
 
@@ -23,16 +23,17 @@ This plugin uses MABS version 8.
 1. Create a new branch of the following repository and clone it into your PC: https://github.com/OutSystems/dynatrace-cordova-plugin
 2. Create a new temp folder in another location
 3. Run the following command inside your temp folder:
-```npm i @dynatrace/cordova-plugin```
-
-4. Remove folder *node_modules\@dynatrace\cordova-plugin\node_modules* in your temp folder
+```cordova create cordovaapp dynatraceRUM```
+4. Enter the newly created folder called cordovaapp, move all its content to the temp folder you created before.
+5. In your temp folder run this command:
+```cordova plugin add @dynatrace/cordova-plugin --save```
 
 ### Copy files
 1. Go to the folder for the repo you just cloned. Copy the folder *OutSystems* under folder *scripts*.
-2. Go back to the folder *node_modules\@dynatrace\cordova-plugin\scripts* under your temp folder and paste the folder *OutSystems* there
+2. Go back to the folder *node_modules\\@dynatrace\cordova-plugin\scripts* under your temp folder and paste the folder *OutSystems* there
 
 ### Add Hooks to plugin.xml
-1. Go to the folder *node_modules\@dynatrace\cordova-plugin\scripts* under your temp folder and open file *plugin.xml* in a code editor
+1. Go to the folder *node_modules\\@dynatrace\cordova-plugin* under your temp folder and open file *plugin.xml* in a code editor
 2. Add these two lines
 ```
   <hook src="scripts/Outsystems/npmInstall.js" type="before_plugin_install"/>
@@ -63,7 +64,7 @@ After
 ```
 
 ### Add the new code to the repo
-1. Go to your temp folder and copy the content of *node_modules\@dynatrace\cordova-plugin* (except for file *README.md*) into the folder where you cloned the *dynatrace-cordova-plugin* repo
+1. Go to your temp folder and copy the content of *node_modules\\@dynatrace\cordova-plugin* (except for file *README.md*) into the folder where you cloned the *dynatrace-cordova-plugin* repo
 2. Commit your changes to *origin*
 
 ## Identify users in the native side

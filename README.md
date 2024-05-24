@@ -5,17 +5,16 @@ It gives you the ability to use the Dynatrace instrumentation in your hybrid app
 
 ## Dynatrace Cordova plugin version
 
-This is based on @dynatrace/cordova-plugin version 1.259.2.
+This is based on @dynatrace/cordova-plugin version 2.291.1.
 
 ## Agent Versions
 
 This agent versions are configured in this plugin:
-
-* iOS Agent: 8.259.1.1009
-* Android Agent: 8.259.1.1008
+- Android Agent: 8.291.1.1002
+- iOS Agent: 8.291.1.1004
 
 ## MABS Version
-This plugin uses MABS version 9.
+This plugin uses MABS version 10.
 
 ## How to Update this Wrapper
 

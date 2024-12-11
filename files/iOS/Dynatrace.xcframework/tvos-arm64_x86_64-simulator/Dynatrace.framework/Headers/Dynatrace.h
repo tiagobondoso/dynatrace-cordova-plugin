@@ -1,5 +1,5 @@
 // Dynatrace.h
-// Version: 8.281.1.1003
+// Version: 8.291.1.1004
 //
 // These materials contain confidential information and
 // trade secrets of Dynatrace Corporation. You shall
@@ -412,6 +412,25 @@ typedef NS_ENUM(int, DTX_StatusCode) {
  */
 - (DTX_StatusCode)stopWebRequestTiming:(NSString* _Nullable)statusCode;
 
+/*!
+ @brief Manually finish timing a web request.
+
+ @param statusCode the response status code for a successful web request or the error code or error description
+ for a failed web request
+ 
+ @param bytesSent number of bytes sent by this web request
+ 
+ @param bytesReceived number of bytes recieved by this web request
+ 
+ The Dynatrace OneAgent automatically times web requests made using NSURLRequest, NSURLConnection,
+ NSURLProtocol and NSString. If you use an alternate technology to make
+ web requests and want to time them, use the getRequestTagHeader method, adding that information to
+ your request, and then this method to stop the timing and send the information to the mobile action PurePath.
+
+ @return Returns a DTX_StatusCode
+ */
+-(DTX_StatusCode)stopWebRequestTiming:(NSString* _Nullable)statusCode bytesSent:(int64_t)bytesSent bytesReceived:(int64_t)bytesReceived;
+
 @end
 
 /*************************************************************************************************/
@@ -420,6 +439,8 @@ typedef NS_ENUM(int, DTX_StatusCode) {
 /*!
 @brief DTXUserPrivacyOptions protocol should be implemented by objects passed to applyUserPrivacyOptions:completion: method.
 @property crashReportingOptedIn current privacy setting for crash reporting
+@property crashReplayOptedIn (DEPRECATED in version >= 8.287) current privacy setting for crash Session Replay
+@property screenRecordOptedIn current privacy setting for Session Replay
 @property dataCollectionLevel the current data collection level.
 */
 
@@ -427,6 +448,7 @@ typedef NS_ENUM(int, DTX_StatusCode) {
 @required
 @property (nonatomic) BOOL crashReportingOptedIn;
 @property (nonatomic) BOOL crashReplayOptedIn;
+@property (nonatomic) NSNumber* _Nullable screenRecordOptedIn;
 @property (nonatomic) DTX_DataCollectionLevel dataCollectionLevel;
 @end
 
@@ -877,7 +899,7 @@ extern NSString *_Nonnull const kDTXUserOptIn;
  @const kDTXInstrumentGPSLocation
  The location is captured only if the app uses CLLocationManager and sends the captured location as a metric to Dynatrace.
  OneAgent for iOS doesn't perform GPS location capturing on its own. Set the value to false to disable OneAgent
- for iOS location capturing. The default value is true.
+ for iOS location capturing. The default value is false.
  */
 extern NSString *_Nonnull const kDTXInstrumentGPSLocation;
 

@@ -39,7 +39,7 @@
         
         <config-file parent="/*" target="config.xml">
             <feature name="DynatraceCordovaPlugin">
-                <param name="ios-package" value="DynatraceCordovaPlugin" />
+                <param name="ios-package" value="com.dynatrace.cordova.plugin.DynatraceCordovaPlugin" />
             </feature>
         </config-file>
 	

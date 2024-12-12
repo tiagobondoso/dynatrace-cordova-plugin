@@ -1,1 +1,0 @@
-#INFO  [2024-12-12 10:27:29]: Created dynatrace.config.js - Please insert your configuration and update the file!

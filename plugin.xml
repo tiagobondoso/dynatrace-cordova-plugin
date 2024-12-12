@@ -43,8 +43,8 @@
             </feature>
         </config-file>
 	
-	    <header-file src="other/DynatraceCordovaPlugin.h"/>
-        <source-file src="other/DynatraceCordovaPlugin.m"/>
+	    <header-file src="other/DynatraceCordovaPlugin.h" target-dir="src/com/dynatrace/cordova/plugin"/>
+        <source-file src="other/DynatraceCordovaPlugin.m" target-dir="src/com/dynatrace/cordova/plugin"/>
     </platform>
 	<platform name="android">
         <framework src="com.dynatrace.agent:agent-android:8.303.2.1014" />
